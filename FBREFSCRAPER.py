@@ -32,7 +32,6 @@ features_wanted_player2 = {"player", "position", "minutes_90s", "tackles",
 "dribble_tackles_pct", "pressure_regain_pct", "interceptions"}
 #features_wanted_play = {"minutes_90s", "tackles_def_3rd"}
 player_names = []
-skipThis = False
 count = 0 
 #make list of all rows (tr tags)
 rows_squad = player_table.find_all('tr')
@@ -48,17 +47,12 @@ for row in rows_squad:
         #else:
             #pre_df_player['player'] = [name]
     for f in features_wanted_player2:
-        #if skipThis == True:
-            #break
         if (row.find("td",{"data-stat": f}) != None):
             cell = row.find("td",{"data-stat": f})
             #print(f)
             #print(cell)
             a = cell.text.strip().encode()
             text = a.decode("utf-8")
-            if (count < 10):
-                print(text)
-                count += 1
             if (text == 'FW' or text == 'GK'):
                 #do nothing we don't want them
                 #skipThis = True
